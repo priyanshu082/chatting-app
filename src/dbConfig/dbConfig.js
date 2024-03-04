@@ -2,7 +2,7 @@
 import React from 'react'
 import mongoose from 'mongoose'
 
-const connect = async () => {
+const connectDB = async () => {
   try{
     mongoose.connect(process.env.MONGO_URI)
 
@@ -23,4 +23,4 @@ j
   }
 }
 
-export default connect
+export default connectDB
