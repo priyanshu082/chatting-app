@@ -4,7 +4,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
 
+
 const SignUpPage = () => {
+  const router=useRouter()
 
    const [user,setUser] = useState({
     email:"",
@@ -12,14 +14,32 @@ const SignUpPage = () => {
     username:""
    })
 
-   const onSignUp= async()=>{
+   const [loading ,setLoading]=useState(false)
 
+   const onSignUp= async()=>{
+      try {
+        
+      setLoading(true);
+
+      const response=await axios.post("/api/users/signup",user)
+
+      console.log(response.data.message)
+      alert("user ban gya")
+
+      router.push("/login")
+
+      } catch (error) {
+        console.log("user pehle se hai" , error.message)
+        alert("user pehle se hai login krle jaakr ")
+      } finally{
+        setLoading(false)
+      }
    }
 
   return (
 
       <div className='flex flex-col '>
-        <p>SignUp</p> 
+        <p>{loading ? "loading" : "signup"}</p> 
 
         <label htmlFor='username' >Username</label>
         <input
