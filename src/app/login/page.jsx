@@ -3,16 +3,25 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
 const LoginPage = () => {
-
+  const router=useRouter();
    const [user,setUser] = useState({
     email:"",
     password:"",
    })
 
    const onLogIn= async()=>{
-
+        try {
+            const response=await axios.post('/api/users/login',user)
+            console.log("successfull",response.data)
+            router.push(`/profile/${response.data.username}`)
+            
+        } catch (error) {
+        console.log("Login Failed",error.message);
+        toast.error(error.message)
+        }
    }
 
   return (

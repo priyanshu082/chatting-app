@@ -14,7 +14,7 @@ const SignUpPage = () => {
     username:""
    })
 
-   const [loading ,setLoading]=useState(false)
+   const [loading ,setLoading] = useState(false)
 
    const onSignUp= async()=>{
       try {
