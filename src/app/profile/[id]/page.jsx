@@ -7,6 +7,7 @@ const UserProfile = ({params}) => {
         <div className='mt-[20px]'>
             profile of : <span className='p-[10px] bg-orange-500'>{params.id}</span>
         </div>
+      
     </div>
   )
 }

@@ -38,7 +38,7 @@ const SignUpPage = () => {
 
   return (
 
-      <div className='flex flex-col '>
+      <div className='flex flex-col p-[200px]'>
         <p>{loading ? "loading" : "signup"}</p> 
 
         <label htmlFor='username' >Username</label>

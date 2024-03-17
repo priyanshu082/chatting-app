@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
@@ -26,7 +27,7 @@ const LoginPage = () => {
 
   return (
 
-      <div className='flex flex-col '>
+      <div className='flex flex-col p-[200px]'>
         <p>LogIn</p> 
 
         <label htmlFor='email'>email</label>
