@@ -62,3 +62,7 @@ body {
   background: rgb(0,0,0);
 background: radial-gradient(circle, rgba(0,0,0,1) 1%, rgba(122,155,250,1) 100%);
 }
+
+.shadow {
+  box-shadow: 5px 5px 10px -2px #a5a5a5;
+}

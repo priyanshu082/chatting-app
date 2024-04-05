@@ -15,13 +15,14 @@ module.exports = {
       colors: {
         darkBlack: '#1c1c1a',
         lightBlack: '#3a3b3f',
-        blue: '#7a9bfa',
+        customBlue: '#1F4AD2',
         darkText: '#74757a',
-        whiteText:"#f9fafb"
+        whiteText: '#edeff0',
       }, 
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
       },
+      
     },
   },
   plugins: [],
