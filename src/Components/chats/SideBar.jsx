@@ -5,22 +5,38 @@ import { IoCallOutline } from "react-icons/io5";
 import { FiMessageSquare } from "react-icons/fi";
 import { IoArrowBack } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
+import { useContext } from 'react';
+import { SectionContext } from '../../Context/Context';
 
 const SideBar = () => {
+
+  const {section,setSection}=useContext(SectionContext)
+
   return (
     <div className='flex flex-col w-[3%] items-center h-full m-[1vw] gap-[1.5vw] '>
-       <Link href='/' className='w-fit rounded-[0.5vw] p-[0.5vw] hover:bg-gray-700 transition-all ease-in-out duration-500 text-[2vw] hover:scale-110 '>
+       <Link 
+       onClick={()=>setSection("chat")}
+       href='/' className='w-fit rounded-[0.5vw] p-[0.5vw] hover:bg-gray-700 transition-all ease-in-out duration-500 text-[2vw] hover:scale-110 '>
         <IoArrowBack/>
        </Link>
-       <Link href='/' className='w-fit rounded-[0.5vw] p-[0.5vw] hover:bg-gray-700 transition-all ease-in-out duration-500 text-[1.75vw]  '>
+
+       <div 
+       onClick={()=>setSection("chat")}
+       className='w-fit rounded-[0.5vw] p-[0.5vw] hover:bg-gray-700 transition-all ease-in-out duration-500 text-[1.75vw]  '>
         <FiMessageSquare/>
-       </Link>
-       <Link href='/' className='w-fit rounded-[0.5vw] p-[0.5vw] hover:bg-gray-700 transition-all ease-in-out duration-500 text-[1.75vw]  '>
+       </div>
+
+       <div 
+       onClick={()=>setSection("call")}
+       className='w-fit rounded-[0.5vw] p-[0.5vw] hover:bg-gray-700 transition-all ease-in-out duration-500 text-[1.75vw]  '>
         <IoCallOutline/>
-       </Link>
-       <Link href='/' className='w-fit rounded-[0.5vw] p-[0.5vw] hover:bg-gray-700 transition-all ease-in-out duration-500 text-[1.75vw]  '>
+       </div>
+
+       <div 
+       onClick={()=>setSection("profile")}
+       className='w-fit rounded-[0.5vw] p-[0.5vw] hover:bg-gray-700 transition-all ease-in-out duration-500 text-[1.75vw]  '>
         <CgProfile/>
-       </Link>
+       </div>
     </div>
   )
 }
