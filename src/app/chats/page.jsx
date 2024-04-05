@@ -4,7 +4,7 @@ import Calls from '@/Components/chats/Calls'
 import MessageScreen from '@/Components/chats/MessageScreen'
 import SamplePage from '@/Components/chats/SamplePage'
 import SideBar from '@/Components/chats/SideBar'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext}from 'react'
 import { SectionContext,SectionProvider } from '@/Context/Context'
 import Profile from '../../Components/chats/Profile'
 
@@ -16,7 +16,6 @@ const page = () => {
   return (
     <div className='shadow flex flex-row w-[97vw] h-[90vh] bg-darkBlack mx-auto mt-[3vw] rounded-[1vw] '>
         <SideBar/>
-
      
         <div className={`${section=== "chat" ? "flex" : "hidden"} w-[100%]`}>
         <AllChats/>
