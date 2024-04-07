@@ -2,7 +2,7 @@ import React from "react";
 import avatar from "../../../public/Avatar2.svg";
 import Image from "next/image";
 
-const ChatCard = () => {
+const ChatCard = ({user}) => {
   return (
     <div className="flex group hover:bg-opacity-[15%] transition-all duration-300 ease-linear flex-row justify-between w-[90%] bg-white bg-opacity-[8%] p-[0.65vw] rounded-[1vw]">
       {/* image */}
@@ -18,7 +18,7 @@ const ChatCard = () => {
 </div>
 
       <div className="w-[80%] flex flex-col pt-[0.1vw]">
-        <div className="text-[1.2vw] font-semibold">Priyanshu</div>
+        <div className="text-[1.2vw] font-semibold">{user}</div>
         <div className="w-[100%] text-darkText overflow-hidden h-[2vw] mt-[0.1vw]">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisc Lorem
           ipsum dolor sit, amet consectetur adipisicing elit. Cumque expedita
