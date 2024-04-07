@@ -8,6 +8,7 @@ export const GET = async(request)=>
 {
   try{
     const userID = await getDataFromToken(request);
+    console.log("request",request);
     const users = await User.find({
       _id:{
         $ne:userID
