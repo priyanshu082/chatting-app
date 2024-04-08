@@ -8,14 +8,12 @@ export const GET = async(request)=>
 {
   try{
     const userID = await getDataFromToken(request);
-    const users = await User.find({
-      _id:{
-        $ne:userID
-      }
+    const user = await User.findOne({
+      _id:userID
     });
     return NextResponse.json({
-      message:"users found successfully",
-      users
+      message:"user found successfully",
+      user
     });
   }
   catch(error)
