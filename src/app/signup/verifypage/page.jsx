@@ -11,7 +11,6 @@ const page = () => {
       console.log(otp)
       setLoading(true)
       const response =await axios.patch("/api/users/verify",otp)
-      console.log(response)
       router.push("/chats");
     } catch (error) {
       console.log(error)

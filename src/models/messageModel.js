@@ -1,21 +1,23 @@
 import mongoose from "mongoose";
 
 const messageSchema=new mongoose.Schema({
-    sender:{
+    author:{
         type:String,
-        required:[true,"Please Provide Username"],
-        unique:true,
+        required:[true,"Please Provide author"],
+    },
+    message:{
+        type:String,
+        required:[true,"Please provide message"],
     },
     room:{
-        type:String,
-        required:[true,"Please provide email"],
-        unique:true,
-    },
-    content:{
       type:String,
-      required:[true,"Please Provide Message"],
+      required:[true,"Please Provide room"],
+    },
+    time:{
+        type:String
     }
-})
+}
+)
 
 
 const Message = mongoose.models.message || mongoose.model("message",messageSchema)
