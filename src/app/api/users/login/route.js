@@ -25,6 +25,7 @@ export const POST=async(request)=>{
         }
 
         //create token data
+        console.log(user);
         const tokenData={
             id:user._id,
             username:user.username,
@@ -36,6 +37,7 @@ export const POST=async(request)=>{
         const response =NextResponse.json({
             message:"Login Successful ",
             success:true,
+            user
         })
 
         response.cookies.set("token",token,{

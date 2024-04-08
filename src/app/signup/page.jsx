@@ -25,8 +25,8 @@ const SignUpPage = () => {
 
       console.log(response.data.message);
       alert("user ban gya");
-
-      router.push("/login");
+      router.push(`/profile/${response.data.saveUser.username}`);
+      
     } catch (error) {
       console.log("user pehle se hai", error.message);
       alert("user pehle se hai login krle jaakr ");

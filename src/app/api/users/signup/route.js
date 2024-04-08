@@ -2,16 +2,16 @@ import connectDB from "@/dbConfig/dbConfig";
 import User from "@/models/userModel";
 import { NextRequest,NextResponse } from "next/server";
 import bcryptjs from "bcryptjs"
-
+import jwt from "jsonwebtoken"
 await connectDB()
 
 
 export const POST= async (request)=>{
     try {
         
-       const response= await request.json();
-       const {username,email,password}=response
-       console.log(response)
+       const reqBody= await request.json();
+       const {username,email,password}=reqBody
+       console.log(reqBody);
 
        //check if useralready exist
         const user=await User.findOne({email})
@@ -34,13 +34,28 @@ export const POST= async (request)=>{
         })
 
         const saveUser= await newUser.save()
-        // console.log(saveUser)
+        console.log(saveUser)
+        //create token data
+        const tokenData={
+            id:saveUser._id,
+            username:saveUser.username,
+            email:saveUser.email
+        }
 
-        return NextResponse.json({
-            message:"User Create succesfully",
+        //create token
+        const token=await jwt.sign(tokenData,process.env.TOKEN_SECRET,{expiresIn:'1d'})
+        const response =NextResponse.json({
+            message:"Login Successful ",
             success:true,
             saveUser
         })
+        console.log("token",token);
+
+        response.cookies.set("token",token,{
+            httpOnly:true
+        })
+
+        return response
 
     } catch (error) {
         return NextResponse.json({error:error.message},
