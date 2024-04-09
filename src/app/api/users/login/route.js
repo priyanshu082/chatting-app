@@ -9,10 +9,10 @@ await connectDB();
 export const POST=async(request)=>{
     try {
         const reqBody=await request.json();
-        const {email,password}=reqBody
+        const {mobileNo,password}=reqBody
         console.log(reqBody);
 
-        const user=await User.findOne({email})
+        const user=await User.findOne({mobileNo})
         if(!user){
             return NextResponse.json({error:"User Doesnt exist"},{status:400})
         }
@@ -29,7 +29,7 @@ export const POST=async(request)=>{
         const tokenData={
             id:user._id,
             username:user.username,
-            email:user.email
+            mobileNo:user.mobileNo
         }
 
         //create token

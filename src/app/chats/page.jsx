@@ -12,38 +12,45 @@ import io from "socket.io-client";
 import { SectionContext } from "@/Context/Context";
 
 const socket = io.connect("http://localhost:3001");
+
 const Page = () => {
   const { section } = useContext(SectionContext);
   const [users, setUsers] = useState([]);
   const [room, setRoom] = useState("");
   const [sender, setSender] = useState("");
   const [showChat, setShowChat] = useState(false);
+  const [reciever,setReciever]=useState({
+    mobileNo:"",
+  })
+  
   function lexicographicalSmaller(str1, str2) {
     return str1 < str2 ? str1 : str2;
   }
-  const handleClick = async (username) => {
+
+
+  const handleClick = async (username,mobileNo) => {
     console.log(`username is ${username}`);
+    setReciever({...reciever,mobileNo})
     const response = await axios.get("/api/users/me");
     const x = response.data.user.username;
     setSender(response.data.user.username);
     console.log(response);
-    console.log("sender ",x);
+    console.log("sender ", x);
     const small = lexicographicalSmaller(x, username);
     console.log(small);
-    if(small===x)
-    {
+    if (small === x) {
       setRoom(small + username);
-      console.log("room",small+username);
-      socket.emit("join_room",small+username);
-    }
-    else
-    {
+      console.log("room", small + username);
+      socket.emit("join_room", small + username);
+    } else {
       setRoom(small + x);
-      console.log("room",small+x);
-      socket.emit("join_room",small+x);
+      console.log("room", small + x);
+      socket.emit("join_room", small + x);
     }
     setShowChat(true);
   };
+
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -59,13 +66,14 @@ const Page = () => {
   }, []); // Empty dependency array means this effect runs only once when the component mounts
 
   return (
-    <div className="shadow flex flex-row w-[97vw] h-[90vh] bg-darkBlack mx-auto mt-[3vw] rounded-[1vw] ">
+    
+    <div className="flex flex-row w-[95vw] h-[90vh] bg-darkBlack ml-[3vw] mt-[2.5vw] rounded-[0.5vw] overflow-hidden">
       <SideBar />
       {/* <h2>{room}</h2> */}
-      <div className={`${section === "chat" ? "flex" : "hidden"} w-[100%]`}>
+      <div className={`${section === "chat" ? "flex" : "hidden"} w-[100%] `}>
         <AllChats users={users} onClick={handleClick} />
         {(showChat && (
-          <Chat socket={socket} username={sender} room={room} />
+          <Chat socket={socket} username={sender} room={room} reciever={reciever} />
         )) || <MessageScreen />}
       </div>
 

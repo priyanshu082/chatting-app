@@ -10,11 +10,12 @@ export const POST= async (request)=>{
     try {
         
        const reqBody= await request.json();
-       const {username,email,password}=reqBody
+       const {username,mobileNo,password}=reqBody
        console.log(reqBody);
 
        //check if useralready exist
-        const user=await User.findOne({email})
+        const user=await User.findOne({mobileNo})
+       
 
         if(user){
             return NextResponse.json(
@@ -23,13 +24,15 @@ export const POST= async (request)=>{
                 )
             }
 
+            
         //hash pssword
         const salt=await bcryptjs.genSalt(10)
         const hashedPassword=await bcryptjs.hash(password,salt)
+     
         
         const newUser= new User({
             username,
-            email,
+            mobileNo,
             password:hashedPassword
         })
 
@@ -39,7 +42,7 @@ export const POST= async (request)=>{
         const tokenData={
             id:saveUser._id,
             username:saveUser.username,
-            email:saveUser.email
+            mobileNo:saveUser.mobileNo
         }
 
         //create token
