@@ -18,6 +18,7 @@ const Page = () => {
   const [room, setRoom] = useState("");
   const [sender, setSender] = useState("");
   const [showChat, setShowChat] = useState(false);
+  const [receiver,setReceiver] = useState("");
   function lexicographicalSmaller(str1, str2) {
     return str1 < str2 ? str1 : str2;
   }
@@ -27,6 +28,7 @@ const Page = () => {
     const x = response.data.user.username;
     setSender(response.data.user.username);
     console.log(response);
+    setReceiver(username);
     console.log("sender ",x);
     const small = lexicographicalSmaller(x, username);
     console.log(small);
@@ -65,7 +67,7 @@ const Page = () => {
       <div className={`${section === "chat" ? "flex" : "hidden"} w-[100%]`}>
         <AllChats users={users} onClick={handleClick} />
         {(showChat && (
-          <Chat socket={socket} username={sender} room={room} />
+          <Chat socket={socket} username={sender} room={room} receiver={receiver} />
         )) || <MessageScreen />}
       </div>
 
