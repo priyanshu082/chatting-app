@@ -13,28 +13,28 @@ const SideBar = () => {
   const {section,setSection}=useContext(SectionContext)
 
   return (
-    <div className='flex flex-col w-[3%] items-center h-full m-[1vw] gap-[1.5vw] '>
+    <div className='flex flex-col w-[2%] items-center h-full mx-[1vw] gap-[0.4vw] '>
        <Link 
        onClick={()=>setSection("chat")}
-       href='/' className={` w-fit rounded-[0.5vw] p-[0.5vw] hover:bg-white hover:bg-opacity-20 transition-all ease-in-out duration-500 text-[2vw] hover:scale-105 `}>
+       href='/' className={` w-fit rounded-[0.3vw] p-[1vw] hover:bg-white hover:bg-opacity-10 transition-all ease-in-out duration-500 text-[1.7vw] `}>
         <IoArrowBack/>
        </Link>
 
        <div 
        onClick={()=>setSection("chat")}
-       className={`${section==="chat" ? "bg-white bg-opacity-20" : "bg-transparent"} w-fit rounded-[0.5vw] p-[0.4vw] hover:bg-white hover:bg-opacity-20 transition-all ease-in-out duration-500 text-[1.85vw]  `}>
+       className={`${section==="chat" ? "bg-white bg-opacity-10" : "bg-transparent"} w-fit rounded-[0.3vw] p-[1vw] hover:bg-white hover:bg-opacity-10 transition-all ease-in-out duration-500 text-[1.5vw]  `}>
         <FiMessageSquare/>
        </div>
 
        <div 
        onClick={()=>setSection("call")}
-       className={`${section==="call" ? "bg-white bg-opacity-20" : "bg-transparent"} w-fit rounded-[0.5vw] p-[0.4vw] hover:bg-white hover:bg-opacity-20 transition-all ease-in-out duration-500 text-[1.85vw]  `}>
+       className={`${section==="call" ? "bg-white bg-opacity-10" : "bg-transparent"} w-fit rounded-[0.3vw] p-[1vw] hover:bg-white hover:bg-opacity-10 transition-all ease-in-out duration-500 text-[1.5vw]  `}>
         <IoCallOutline/>
        </div>
 
        <div 
        onClick={()=>setSection("profile")}
-       className={`${section==="profile" ? "bg-white bg-opacity-20" : "bg-transparent"} w-fit rounded-[0.5vw] p-[0.4vw] hover:bg-white hover:bg-opacity-20 transition-all ease-in-out duration-500 text-[1.85vw]  `}>
+       className={`${section==="profile" ? "bg-white bg-opacity-10" : "bg-transparent"} w-fit rounded-[0.3vw] p-[1vw] hover:bg-white hover:bg-opacity-10 transition-all ease-in-out duration-500 text-[1.5vw]  `}>
         <CgProfile/>
        </div>
     </div>
