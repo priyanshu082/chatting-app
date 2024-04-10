@@ -4,7 +4,7 @@ import ChatCard from "./ChatCard";
 
 const AllChats = ({ users, onClick }) => {
   return (
-    <div className="relative w-[30%] bg-black bg-opacity-50">
+    <div className="relative w-[30%] ">
       <div className="flex flex-col px-[1vw]">
         <div className="pt-[1vw] px-[0.5vw] font-semibold text-[1.5vw]">
           Chats

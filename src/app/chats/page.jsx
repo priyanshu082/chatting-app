@@ -9,12 +9,12 @@ import SideBar from "@/Components/chats/SideBar";
 import Profile from "../../Components/chats/Profile";
 import Chat from "@/Components/chats/Chat";
 import io from "socket.io-client";
-import { SectionContext } from "@/Context/Context";
+import { SectionContext } from "@/Context/Context"
 
 const socket = io.connect("http://localhost:3001");
 
 const Page = () => {
-  const { section,active,setSection,setActive } = useContext(SectionContext);
+  const { section,active,setActive } = useContext(SectionContext);
 
   const [users, setUsers] = useState([]);
   const [room, setRoom] = useState("");
@@ -30,11 +30,12 @@ const Page = () => {
   }
 
 
+
+
   const handleClick = async (username,mobileNo) => {
     console.log(`username is ${username}`);
     setReciever({...reciever,mobileNo})
-    setActive(reciever.mobileNo)
-
+    
     const response = await axios.get("/api/users/me");
     const x = response.data.user.username;
     setSender(response.data.user.username);
@@ -54,6 +55,10 @@ const Page = () => {
     
     setShowChat(true);
   };
+
+  useEffect(()=>{
+  setActive(reciever.mobileNo)
+  },[reciever])
 
 
   useEffect(() => {

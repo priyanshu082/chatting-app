@@ -47,5 +47,5 @@ background: radial-gradient(circle, rgba(0,0,0,1) 1%, rgba(122,155,250,1) 100%);
 .shadow-profile-bar{
   /* -webkit-box-shadow: 6px 25px 54px 11px rgba(28,28,26,1); */
   /* -moz-box-shadow: 6px 25px 54px 11px rgba(28,28,26,1); */
-  box-shadow: 5vw -0.5vw 2vw 5vw #1c1c1a;
+  box-shadow: 2vw -0.5vw 2vw 2.5vw #272a36;
 }

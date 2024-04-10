@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 // import ScrollToBottom from "react-scroll-to-bottom";
 import axios from "axios";
 import { IoSend } from "react-icons/io5";
@@ -6,8 +6,12 @@ import avatar from "/public/Avatar2.svg";
 import Image from "next/image";
 import { ThreeDots } from "react-loader-spinner";
 
+
 let id;
 function Chat({ socket, username, room, reciever }) {
+
+  const ref=useRef();
+
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
   const [sendto, setSendto] = useState({});
@@ -128,8 +132,16 @@ function Chat({ socket, username, room, reciever }) {
         <div className="shadow-profile-bar z-[2]" />
       </div>
 
-      <div className="overflow-y-auto scrollbar-hide h-[81%] px-[2vw] pt-[2vw] pb-[0.5vw]">
-        <div className=" w-[100%] bg-opacity-10 z-[-10]">
+      <div 
+      style={{
+        backgroundImage:"url('/anime2.jpeg')",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
+      className="h-[100%]">
+
+      <div className="overflow-y-auto scrollbar-hide h-[83%] px-[2vw] pt-[2vw]">
+        <div className=" w-[100%] bg-opacity-10 z-[-10] ">
           {messageList &&
             messageList.map((messageContent, index) => (
               <div
@@ -147,8 +159,8 @@ function Chat({ socket, username, room, reciever }) {
                     className={`${
                       username === messageContent.author
                         ? "bg-blue-500"
-                        : "bg-white bg-opacity-10"
-                    } w-[95%] p-[1vw] rounded-[0.75vw] break-words`}
+                        : "bg-white bg-opacity-20"
+                    } w-[95%] p-[1vw] rounded-[0.75vw] text-[1.25vw] break-words font-medium`}
                   >
                     <div className=" ">{messageContent.message}</div>
                   </div>
@@ -160,7 +172,7 @@ function Chat({ socket, username, room, reciever }) {
             ))}
         </div>
 
-        {!isTyping && (
+        {isTyping && (
           <div className="flex flex-row items-center gap-[0.5vw]">
             <Image src={avatar} className="w-[3vw]"/>
               
@@ -177,10 +189,9 @@ function Chat({ socket, username, room, reciever }) {
             />
           </div>
         )}
-
       </div>
 
-      <div className=" p-[0.75vw] flex items-center gap-[0.75vw] w-[100%]">
+      <div className=" px-[0.75vw] pb-[0.5vw] bg-black bg-opacity-50 flex items-center gap-[0.75vw] w-[100%]">
         <div className="text-[2.5vw] font-light flex items-center justify-center hover:cursor-pointer">
           +
         </div>
@@ -192,7 +203,7 @@ function Chat({ socket, username, room, reciever }) {
           className="flex-1 py-[0.4vw] px-[1vw] rounded-[1vw] bg-transparent border border-zinc-700 focus:outline-none text-gray-200 mt-[0.5vw]"
           onChange={(event) => {
             setCurrentMessage(event.target.value);
-            // handleTyping();
+            handleTyping();
           }}
           onKeyDown={(event) => event.key === "Enter" && sendMessage()}
         />
@@ -204,6 +215,11 @@ function Chat({ socket, username, room, reciever }) {
           <IoSend />
         </button>
       </div>
+
+      </div>
+
+     
+
     </div>
   );
 }
