@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import {Bars} from "react-loader-spinner"
+
 const page = () => {
   const [otp, setOtp] = useState();
   const [loading, setLoading] = useState(false);
@@ -31,7 +33,7 @@ const page = () => {
           click me
         </button>
       </div>
-      {/* <Bars
+      <Bars
         height="50"
         width="50"
         color="blue"
@@ -39,7 +41,7 @@ const page = () => {
         wrapperStyle={{}}
         wrapperClass=""
         visible={true}
-      /> */}
+      />
     </div>
   );
 };

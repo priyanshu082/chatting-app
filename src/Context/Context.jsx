@@ -6,9 +6,10 @@ export const AuthContext = createContext();
 
 export const SectionProvider = ({ children }) => {
   const [section, setSection] = useState("chat");
+  const [active,setActive]=useState()
 
   return (
-    <SectionContext.Provider value={{ section, setSection }}>
+    <SectionContext.Provider value={{ section,active, setSection,setActive }}>
       {children}
     </SectionContext.Provider>
   );

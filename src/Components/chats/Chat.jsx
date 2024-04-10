@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 // import ScrollToBottom from "react-scroll-to-bottom";
 import axios from "axios";
 import { IoSend } from "react-icons/io5";
+import avatar from "/public/Avatar2.svg";
+import Image from "next/image";
+import { ThreeDots } from "react-loader-spinner";
+
 let id;
 function Chat({ socket, username, room, reciever }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
   const [sendto, setSendto] = useState({});
   const [isTyping, setIsTyping] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -40,18 +45,23 @@ function Chat({ socket, username, room, reciever }) {
     fetchRecieverData();
     fetchData();
   }, [room]);
+
   const handleTyping = async () => {
     clearTimeout(id);
-    await socket.emit("isTyping", { room: room, typing: true });
-    id = setTimeout(async() => {
-      await socket.emit("isTyping", { room: room, typing: false })
-    }, 500);
+    await socket.emit("isTyping", {
+      room: room,
+      typing: true,
+    });
+    id = setTimeout(async () => {
+      await socket.emit("isTyping", { room: room, typing: false });
+    }, 1000);
   };
-  const handleDelete = async()=>
-  {
-    const response = await axios.post("/api/messages/delete",{room:room});
+
+  const handleDelete = async () => {
+    const response = await axios.post("/api/messages/delete", { room: room });
     setMessageList("");
-  }
+  };
+
   const sendMessage = async () => {
     if (currentMessage.trim() !== "") {
       const hours = new Date().getHours();
@@ -88,49 +98,90 @@ function Chat({ socket, username, room, reciever }) {
     };
   }, [socket]);
 
-  console.log(sendto);
+
 
   return (
-    <div className="w-[70%] h-[100%]">
+    <div className="w-[70%] h-[100%] ">
       {/* profile section of person */}
-      <div className="h-[8%] flex flex-col">
-        <div>{sendto.username}</div>
-        <div>{isTyping ? <span>{sendto.username} is typing</span> : ""}</div>
-        <div><button  className="border text-white hover:bg-red-500 hover:text-white rounded-lg p-2 hover:transition-transform ease-in-out " onClick={handleDelete}>Delete this chat</button></div>
-      </div>
-      <div className="h-[81%] p-[2vw] overflow-y-auto scrollbar-hide bg-black w-[100%] bg-opacity-10 ">
-        {messageList &&
-          messageList.map((messageContent, index) => (
-            <div
-              key={index}
-              className={`flex w-[100%] ${
-                username === messageContent.author
-                  ? "justify-end"
-                  : "justify-start"
-              } `}
-            >
-              <div
-                className={` flex flex-col items-end mt-[2vw] rounded-[0.5vw] min-w-[15%] max-w-[60%]`}
-              >
-                <div
-                  className={`${
-                    username === messageContent.author
-                      ? "bg-blue-500"
-                      : "bg-white bg-opacity-10"
-                  } w-[95%] p-[1vw] rounded-[0.75vw] break-words`}
-                >
-                  <div className=" ">{messageContent.message}</div>
-                </div>
-                <div className="text-gray-100  mt-[-0.5vw] rounded-[1vw] p-[0.5vw] bg-darkBlack mr-[0.5vw] text-[0.6vw]">
-                  {messageContent.time}
-                </div>
-              </div>
+
+      <div className="h-[9.3%] flex flex-col pt-[0.5vw]">
+        <div className="flex group hover:bg-opacity-[15%] transition-all duration-300 ease-linear flex-row  bg-transparent p-[0.35vw] rounded-[0.5vw] cursor-pointer h-full pl-[2vw] z-[1000]">
+          <div className=" border-[2px] rounded-full border-blue-600 relative">
+            <Image
+              src={avatar}
+              className=" w-[3.2vw] object-cover rounded-full group-hover:scale-105 transition-all duration-100 ease-linear"
+              alt="User Avatar"
+            />
+            <div className="absolute inset-0 flex mt-[-2.75vw] mr-[-2.6vw] items-center justify-center z-10 rounded-full ">
+              <div className="w-[1vw] h-[1vw] bg-green-500 rounded-full border-[2px] border-black" />
             </div>
-          ))}
+          </div>
+
+          <div className="ml-[1.5vw] flex flex-col pt-[0.1vw]">
+            <div className="text-[1.2vw] font-semibold">{sendto.username}</div>
+            <div className=" text-darkText text-[1vw] overflow-hidden  mt-[0.1vw]">
+              Active
+            </div>
+          </div>
+        </div>
+
+        <div className="shadow-profile-bar z-[2]" />
       </div>
 
-      <div className=" p-[0.75vw] flex items-center gap-[0.75vw] w-[94%]">
-        <div className="text-[2.5vw] font-light flex items-center justify-center hover:cursor-pointer" >
+      <div className="overflow-y-auto scrollbar-hide h-[81%] px-[2vw] pt-[2vw] pb-[0.5vw]">
+        <div className=" w-[100%] bg-opacity-10 z-[-10]">
+          {messageList &&
+            messageList.map((messageContent, index) => (
+              <div
+                key={index}
+                className={`flex w-[100%]  ${
+                  username === messageContent.author
+                    ? "justify-end"
+                    : "justify-start"
+                } `}
+              >
+                <div
+                  className={` flex flex-col items-end mt-[2vw] rounded-[0.5vw] min-w-[15%] max-w-[60%]`}
+                >
+                  <div
+                    className={`${
+                      username === messageContent.author
+                        ? "bg-blue-500"
+                        : "bg-white bg-opacity-10"
+                    } w-[95%] p-[1vw] rounded-[0.75vw] break-words`}
+                  >
+                    <div className=" ">{messageContent.message}</div>
+                  </div>
+                  <div className="text-gray-100  mt-[-0.5vw] rounded-[1vw] p-[0.5vw] bg-darkBlack mr-[0.5vw] text-[0.6vw]">
+                    {messageContent.time}
+                  </div>
+                </div>
+              </div>
+            ))}
+        </div>
+
+        {!isTyping && (
+          <div className="flex flex-row items-center gap-[0.5vw]">
+            <Image src={avatar} className="w-[3vw]"/>
+              
+          
+            <ThreeDots
+              visible={true}
+              height="15"
+              width="60"
+              color="#1F4AD2"
+              radius="9"
+              ariaLabel="three-dots-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+            />
+          </div>
+        )}
+
+      </div>
+
+      <div className=" p-[0.75vw] flex items-center gap-[0.75vw] w-[100%]">
+        <div className="text-[2.5vw] font-light flex items-center justify-center hover:cursor-pointer">
           +
         </div>
 
@@ -141,7 +192,7 @@ function Chat({ socket, username, room, reciever }) {
           className="flex-1 py-[0.4vw] px-[1vw] rounded-[1vw] bg-transparent border border-zinc-700 focus:outline-none text-gray-200 mt-[0.5vw]"
           onChange={(event) => {
             setCurrentMessage(event.target.value);
-            handleTyping(); // Handle typing event
+            // handleTyping();
           }}
           onKeyDown={(event) => event.key === "Enter" && sendMessage()}
         />

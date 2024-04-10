@@ -27,8 +27,9 @@ const AllChats = ({ users, onClick }) => {
           users.map((item, index) => (
             <ChatCard
               key={index} // Assuming each user has a unique id
-              user={item.username}
-              onClick={() => onClick(item.username, item.mobileNo)} // Pass the handleClick function as a prop
+              user={item}
+              onClick={() => onClick(item.username, item.mobileNo)}// Pass the handleClick function as a prop
+            
             />
           ))}
       </div>

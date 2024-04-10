@@ -4,29 +4,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
 
 @layer utilities {
   .text-balance {
@@ -65,4 +42,10 @@ background: radial-gradient(circle, rgba(0,0,0,1) 1%, rgba(122,155,250,1) 100%);
 
 .shadow {
   box-shadow: 5px 5px 10px -2px #a5a5a5;
+}
+
+.shadow-profile-bar{
+  /* -webkit-box-shadow: 6px 25px 54px 11px rgba(28,28,26,1); */
+  /* -moz-box-shadow: 6px 25px 54px 11px rgba(28,28,26,1); */
+  box-shadow: 5vw -0.5vw 2vw 5vw #1c1c1a;
 }
