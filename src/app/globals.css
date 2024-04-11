@@ -50,5 +50,22 @@ background: linear-gradient(to right, #3d6ebc 10%, #fbfafa 60%);
 
 .shadow-profile-bar{
  
-  box-shadow: -2vw 0.5vw 1vw 2vw #272a36;
+  box-shadow: 1vw 0.5vw 1vw 2vw #272a36;
+}
+
+
+.blinking {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
 }

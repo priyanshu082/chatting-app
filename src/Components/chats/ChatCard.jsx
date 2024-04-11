@@ -13,11 +13,13 @@ const ChatCard = ({ user, onClick }) => {
 
 
   return (
-    <div className={`${active === user.mobileNo ? "bg-blue-500" : "bg-white bg-opacity-[8%] hover:bg-opacity-[15%]"} flex group  transition-all duration-300 ease-linear flex-row justify-between w-[93%]  p-[0.65vw] rounded-[0.5vw] cursor-pointer`} onClick={handleClick}>
-      <div className={` ${active === user.mobileNo ? "bg-red-500 border-yellow-300 border-[2.5px]" : "border-blue-600 border-[1px]"}   w-[15%]  p-[1px] rounded-full relative`}>
-        <Image src={avatar} className="w-full h-full object-cover rounded-full group-hover:scale-105 transition-all duration-100 ease-linear" alt="User Avatar" />
+    <div className={`${active === user.mobileNo ? "bg-blue-500" : "bg-white bg-opacity-[8%] hover:bg-opacity-[15%]"} flex group  transition-all duration-300 ease-linear flex-row justify-between w-[93%] py-[1vw] px-[1.25vw] rounded-[1.25vw] cursor-pointer mt-[0.75vw]`} onClick={handleClick}>
+      <div className={` ${active === user.mobileNo ? "bg-red-500 border-yellow-300 border-[2.5px]" : "border-blue-600 border-[1px]"}   w-[17%] rounded-full relative`}>
+
+        <Image src={avatar} className=" object-cover rounded-full group-hover:scale-95 transition-all duration-100 ease-linear" alt="User Avatar" />
+
         <div className="absolute inset-0 flex mt-[-2.75vw] mr-[-2.6vw] items-center justify-center z-10 rounded-full ">
-          <div className="w-[1vw] h-[1vw] bg-green-500 rounded-full border-[2px] border-black" />
+          <div className="w-[0.75vw] h-[0.75vw]  bg-green-500 rounded-full " />
         </div>
       </div>
 

@@ -7,6 +7,8 @@ import Image from "next/image";
 import { ThreeDots } from "react-loader-spinner";
 
 
+
+
 let id;
 function Chat({ socket, username, room, reciever }) {
 
@@ -142,7 +144,7 @@ function Chat({ socket, username, room, reciever }) {
       }}
       className="h-[100%] flex flex-col">
 
-      <div className="overflow-y-auto scrollbar-hide h-[83%] px-[2vw] pt-[2vw]">
+      <div className="overflow-y-auto scrollbar-hide h-[82%] px-[2vw] pt-[2vw]">
 
         <div className="  w-[100%] bg-opacity-10 z-[-10] ">
           {messageList &&
@@ -194,8 +196,8 @@ function Chat({ socket, username, room, reciever }) {
         )}
       </div>
 
-      <div className=" px-[0.75vw] pb-[0.5vw] bg-black bg-opacity-50 flex items-center gap-[0.75vw] w-[100%]">
-        <div className="text-[2.5vw] font-light flex items-center justify-center hover:cursor-pointer">
+      <div className=" px-[0.75vw] pb-[0.5vw] bg-black bg-opacity-70 flex justify-center items-center gap-[0.75vw] w-[100%] py-[0.5vw]">
+        <div className="text-[2vw] font-light flex items-center justify-center hover:cursor-pointer  px-[0.75vw]">
           +
         </div>
 
@@ -203,7 +205,7 @@ function Chat({ socket, username, room, reciever }) {
           type="text"
           value={currentMessage}
           placeholder="Type a message..."
-          className="flex-1 py-[0.4vw] px-[1vw] rounded-[1vw] bg-transparent border border-zinc-700 focus:outline-none text-gray-200 mt-[0.5vw]"
+          className="flex-1 py-[0.8vw] px-[1vw] bg- rounded-[1vw] bg-transparent border border-zinc-500 focus:outline-none  text-gray-200 "
           onChange={(event) => {
             setCurrentMessage(event.target.value);
             handleTyping();
@@ -213,7 +215,7 @@ function Chat({ socket, username, room, reciever }) {
 
         <button
           onClick={sendMessage}
-          className="pr-[0.35] mt-[0.5vw] p-[0.6vw] flex justify-center items-center rounded-full bg-blue-500 text-white hover:bg-blue-600 text-[1.25vw]"
+          className=" rounded-[1.2vw]  flex justify-center items-center p-[1vw] bg-blue-500 text-white hover:bg-blue-600 text-[1.5vw]"
         >
           <IoSend />
         </button>
