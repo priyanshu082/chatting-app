@@ -35,11 +35,6 @@
   10% { border-color: #7a9bfa; }
 }
 
-.gradient{
-  background: rgb(0,0,0);
-background: radial-gradient(circle, rgba(0,0,0,1) 1%, rgba(122,155,250,1) 100%);
-}
-
 .shadow {
   box-shadow: 0vw 0vw 1.5vw 2vw #272a36;
 }
