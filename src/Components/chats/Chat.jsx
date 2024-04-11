@@ -10,7 +10,8 @@ import { ThreeDots } from "react-loader-spinner";
 let id;
 function Chat({ socket, username, room, reciever }) {
 
-  const ref=useRef();
+
+  
 
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
@@ -86,6 +87,7 @@ function Chat({ socket, username, room, reciever }) {
       const response = await axios.post("api/messages/send", messageData);
 
       setCurrentMessage("");
+ 
     }
   };
 
@@ -138,10 +140,11 @@ function Chat({ socket, username, room, reciever }) {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
-      className="h-[100%]">
+      className="h-[100%] flex flex-col">
 
       <div className="overflow-y-auto scrollbar-hide h-[83%] px-[2vw] pt-[2vw]">
-        <div className=" w-[100%] bg-opacity-10 z-[-10] ">
+
+        <div className="  w-[100%] bg-opacity-10 z-[-10] ">
           {messageList &&
             messageList.map((messageContent, index) => (
               <div
@@ -150,8 +153,7 @@ function Chat({ socket, username, room, reciever }) {
                   username === messageContent.author
                     ? "justify-end"
                     : "justify-start"
-                } `}
-              >
+                }`}>
                 <div
                   className={` flex flex-col items-end mt-[2vw] rounded-[0.5vw] min-w-[15%] max-w-[60%]`}
                 >
@@ -167,16 +169,17 @@ function Chat({ socket, username, room, reciever }) {
                   <div className="text-gray-100  mt-[-0.5vw] rounded-[1vw] p-[0.5vw] bg-darkBlack mr-[0.5vw] text-[0.6vw]">
                     {messageContent.time}
                   </div>
+                  
                 </div>
+               
               </div>
             ))}
+            
         </div>
 
         {isTyping && (
           <div className="flex flex-row items-center gap-[0.5vw]">
             <Image src={avatar} className="w-[3vw]"/>
-              
-          
             <ThreeDots
               visible={true}
               height="15"
@@ -214,12 +217,9 @@ function Chat({ socket, username, room, reciever }) {
         >
           <IoSend />
         </button>
-      </div>
 
       </div>
-
-     
-
+      </div>
     </div>
   );
 }

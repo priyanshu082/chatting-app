@@ -8,7 +8,7 @@ export function middleware(request) {
     const token=request.cookies.get('token')?.value || ''
 
     if(isPublic && token){
-        return NextResponse.redirect(new URL('/'),request.nextUrl)
+        return NextResponse.redirect(request.nextUrl)
     }
 
     if(!isPublic && !token){
