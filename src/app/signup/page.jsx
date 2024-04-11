@@ -20,14 +20,11 @@ const SignUpPage = () => {
   const onSignUp = async () => {
     try {
       setLoading(true);
-
       const response = await axios.post("/api/users/signup", user);
-
       console.log(response.data.message);
-      alert("user ban gya");
-      router.push(`/profile/${response.data.saveUser.username}`);
+      router.push(`/signup/verifypage`);
     } catch (error) {
-      console.log("user pehle se hai", error.message);
+
       alert("user pehle se hai login krle jaakr ");
     } finally {
       setLoading(false);

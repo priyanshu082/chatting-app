@@ -21,6 +21,7 @@ module.exports = {
       }, 
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
+        audiowide:['Michroma', 'sans-serif'],
       },
       
     },
