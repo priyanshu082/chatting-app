@@ -162,7 +162,7 @@ function Chat({ socket, username, room, reciever }) {
                   } peer`}
                 >
                   <div
-                    className={` flex flex-col items-end mt-[2vw] rounded-[0.5vw] min-w-[25%] max-w-[60%] `}
+                    className={` flex flex-col items-end mt-[2vw] rounded-[0.5vw] min-w-[25%] max-w-[60%] relative`}
                   >
                     <div
                       className={`${
@@ -179,21 +179,33 @@ function Chat({ socket, username, room, reciever }) {
                         }}
                         className=" w-[1.1vw] p-[0.2vw] h-[1.1vw] rounded-[0.2vw] bg-gray-700 cursor-pointer flex "
                       >
-                        <Image width={10} height={10} className="" src="/droparrow.svg"/>
-                        <div className={`${
+                        <Image width={10} height={10} className="" src="/droparrow.svg"/>   
+                      </div>
+                    </div>
+
+                    <div className={`${
                             toggle === messageContent._id ? "flex" : "hidden"
-                          } ml-[-8vw] px-[0.2vw] bg-gray-600 h-fit py-[0.50vw] rounded-[0.5vw]`}>
+                          } px-[0.5vw] bg-gray-600 h-fit py-[0.50vw] rounded-[0.5vw] flex flex-col items-center justify-center absolute mt-[1.25vw] mr-[2vw] z-[40] cursor-pointer w-[10vw]`}>
                         <div
                           onClick={() => handleDeleteOne(messageContent._id)}
-                          className={` px-[1.75vw] py-[0.3vw] text-[1vw] text-gray-100 appearance-none rounded-[0.2vw]  hover:bg-blue-500`}
+                          className={`w-full  text-center mt-[0.2vw] py-[0.2vw] text-[1vw] text-gray-100 appearance-none rounded-[0.4vw] hover:bg-blue-500`}
                         >
                           Delete
                         </div>
-                        </div> 
+                        <div
+                          
+                          className={` w-full text-center mt-[0.2vw] py-[0.2vw] text-[1vw] text-gray-100 appearance-none rounded-[0.4vw] hover:bg-blue-500`}
+                        >
+                          Copy
+                        </div>
+                        <div
+                          
+                          className={`w-full  text-center mt-[0.2vw] py-[0.2vw] text-[1vw] text-gray-100 appearance-none rounded-[0.4vw] hover:bg-blue-500`}
+                        >
+                          Forward
+                        </div>
 
-                       
-                      </div>
-                    </div>
+                        </div>
 
                     <div className="text-gray-100 z-10 mt-[-0.5vw] rounded-[1vw] p-[0.5vw] bg-darkBlack  text-[0.6vw] mr-[-0.75vw]">
                       {messageContent.time}
