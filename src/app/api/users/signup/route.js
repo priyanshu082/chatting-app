@@ -8,7 +8,6 @@ await connectDB()
 
 export const POST= async (request)=>{
     try {
-        
        const reqBody= await request.json();
        const {username,mobileNo,password}=reqBody
        console.log(reqBody);

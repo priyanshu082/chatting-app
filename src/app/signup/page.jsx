@@ -34,9 +34,8 @@ const SignUpPage = () => {
   return (
     <div className="shadow flex flex-col sm:flex-row-reverse w-[85vw] h-[85vh] text-whiteText bg-darkBlack mx-auto mt-[3vw] rounded-[1vw] font-poppins">
 
-      <div className="w-[45%] hidden sm:flex flex-col justify-center items-center rounded-[1vw]">
+      <div className="w-[45%] hidden sm:flex flex-col justify-center items-center rounded-[1vw">
         <Image src={signup} className="w-[65%] " />
-
         <div className="mt-[2vw] font-bold text-[3.25vw]">PiChat</div>
       </div>
 

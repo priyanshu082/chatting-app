@@ -5,11 +5,12 @@ import ChatCard from "./ChatCard";
 const AllChats = ({ users, onClick }) => {
   return (
     <div className="relative w-[30%] ">
+
       <div className="flex flex-col px-[1vw]">
         <div className="pt-[1vw] px-[0.5vw] font-semibold text-[1.5vw]">
           Chats
         </div>
-        <div className="mt-[0.5vw]">
+        <div className="mt-[1.5vw]">
           <input
             type="text"
             // onChange={(e) => {
@@ -21,7 +22,7 @@ const AllChats = ({ users, onClick }) => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-[0.3vw] items-center pt-[1vw] overflow-y-scroll scrollbar-hide">
+      <div className="flex flex-col gap-[0.3vw] h-[83%] items-center pt-[1vw] overflow-y-scroll scrollbar-hide">
         {/* <SearchBar/> */}
         {users &&
           users.map((item, index) => (
